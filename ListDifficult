@@ -1,0 +1,86 @@
+# Given the names and grades for each student in a Physics class of  students, 
+#store them in a nested list and print the name(s) of any student(s) having the second lowest grade.
+
+# Note: If there are multiple students with the same grade, order their names alphabetically and print each name on a new line.
+
+# Input Format
+
+# The first line contains an integer, N , the number of students. 
+# The 2N subsequent lines describe each student over  lines; the first line contains a student's name, and the second line contains their grade.
+
+# # Constraints
+
+# 2<=N<=5
+
+# # There will always be one or more students having the second lowest grade.
+# # Output Format
+
+# # Print the name(s) of any student(s) having the second lowest grade in Physics; if there are multiple students, order their names alphabetically and print each one on a new line.
+# Sample Input
+# 5
+# Harry
+# 37.21
+# Berry
+# 37.21
+# Tina
+# 37.2
+# Akriti
+# 41
+# Harsh
+# 39
+
+# Sample Output
+# Berry
+# Harry
+
+
+
+if __name__ == '__main__':
+    arr=[]
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        arr.append([name,score])
+        
+    def keyscore(element):
+        return element[1]
+
+    def keyname(element):
+        return element[0]
+    
+    arr.sort(key=keyscore)
+    minscore=arr[0][1]
+    second=[]
+    for i in range(len(arr)):
+        if (arr[i][1] > arr[0][1]):
+            secondscore=arr[i][1]
+            break
+            
+    print(arr)
+    print(secondscore)
+   
+    for i in range(len(arr)):
+        if(arr[i][1] == secondscore):
+            second.append(arr[i][0])
+    
+    second.sort()
+    for i in range(len(second)):
+        print(second[i])
+        
+        
+#Output
+#5
+#Harry
+#37.21
+#Berry
+#37.21
+#Tina
+#37.2
+#Akriti
+#41
+#Harsh
+#39
+#[['Tina', 37.2], ['Harry', 37.21], ['Berry', 37.21], ['Harsh', 39.0], ['Akriti', 41.0]]
+#37.21
+#Berry
+#Harry
