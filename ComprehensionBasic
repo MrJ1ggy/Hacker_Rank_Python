@@ -1,0 +1,6 @@
+#example of comprehension
+mylist=[]
+mylist=[i for i in "positive"]
+print(mylist)
+
+#['p', 'o', 's', 'i', 't', 'i', 'v', 'e']
