@@ -19,3 +19,8 @@ elif (6<=N<=20):
     print("Weird")
 elif (N>20):
     print("Not Weird")
+
+
+#Output
+#88
+#Not Weird
