@@ -1,0 +1,28 @@
+#Find 2nd highest number in a list
+
+if __name__ == '__main__':
+    n = int(input())
+    arr = map(int, input().split())
+    ary=[]
+    for num in set(arr):
+        ary.append(num)
+      
+    if ary[0] > ary[1]:
+        maxi=ary[0]
+        runner=ary[1]
+    else:
+            maxi=ary[1]
+            runner=ary[0]
+    print(maxi,runner)
+    for i in range(2,len(ary)):
+        print("checking-->",ary[i])
+        if ary[i] > maxi:
+            runner=maxi
+            maxi=ary[i]
+        elif ary[i] == maxi:
+            maxi=ary[i]
+        elif ary[i]>runner:
+                runner=ary[i]
+        print(maxi,runner)
+    print(runner)
+  
