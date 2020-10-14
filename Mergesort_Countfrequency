@@ -1,0 +1,57 @@
+# Write a Python function frequency(l) that takes as input a list of integers and returns a pair of the form
+# (minfreqlist,maxfreqlist) where
+# minfreqlist is a list of numbers with minimum frequency in l, sorted in ascending order
+# maxfreqlist is a list of numbers with maximum frequency in l, sorted in ascending order
+# Here are some examples of how your function should work.
+# >>> frequency([13,12,11,13,14,13,7,11,13,14,12])
+# ([7], [13])
+
+# >>> frequency([13,12,11,13,14,13,7,11,13,14,12,14,14])
+# ([7], [13, 14])
+
+# >>> frequency([13,12,11,13,14,13,7,11,13,14,12,14,14,7])
+# ([7, 11, 12], [13, 14])
+def merge(A,B):
+    (C,m,n) = ([],len(A),len(B))
+    (i,j) = (0,0)
+    while i+j < m+n:
+        if i==m:           #Case1 A is empty
+            C.append(B[j]) 
+            j=j+1
+        elif j==m:         #Case2 B is empty
+            C.append(A[i])
+            i=i+1
+        elif A[i] <= B[j]: #Case3 A is small
+            C.append(A[i])
+            i=i+1
+        elif A[i] > B[j]:  #Case4 B is small
+            C.append(B[j])
+            j=j+1
+    return(C)    
+def mergeSort(A,left,right):
+    if right - left <=1:       #Base Case
+        return(A[left:right])
+    if right - left > 1:       #Recursive Call
+        mid=(left+right)//2
+        L = mergeSort(A,left,mid)
+        R = mergeSort(A,mid,right)
+        return(merge(L,R))    
+def frequency(L):
+    Sortlist = mergeSort(L,0,len(L))
+    freq={}
+    for num in Sortlist:
+        if num in freq:
+            freq[num]+=1
+        else:
+            freq[num]=1
+    listfreq = list(freq.values())
+    maxfreq = max(listfreq)
+    minfreq = min(listfreq)
+    minlist=[]
+    maxlist=[]
+    for key,value in freq.items():
+        if value == minfreq:
+            minlist.append(key)
+        if value == maxfreq:
+            maxlist.append(key)
+    return(minlist,maxlist)
